@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>今晚,只为你</title>
+  <!-- ไม่พึ่ง CDN/ฟอนต์ภายนอกเลย เพื่อให้เปิดได้ทั้งในจีนและต่างประเทศ -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- แคนวาสดาว ดาวตก และพลุ -->
+  <canvas id="sky-canvas"></canvas>
+  <canvas id="fireworks-canvas"></canvas>
+
+  <!-- ดวงจันทร์ (กดแล้วมีพลุ) -->
+  <div class="moon" id="moon" role="button" aria-label="月亮"></div>
+
+  <!-- ปุ่มกลับหน้าหลัก (ซ่อนอยู่ในหน้าแรก) -->
+  <button class="pill home-btn" id="homeBtn" type="button" aria-label="回到首页">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+    <span data-text="homeLabel"></span>
+  </button>
+
+  <!-- ตัวควบคุมเพลง -->
+  <div class="music">
+    <div class="pill-group">
+      <button class="pill" id="musicToggle" type="button" aria-label="播放/暂停音乐">
+        <svg id="iconPlay" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg id="iconPause" hidden width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+        <span id="musicLabel"></span>
+      </button>
+      <button class="pill pill-arrow" id="trackToggle" type="button" aria-label="选择曲目" aria-expanded="false">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+    <ul class="track-menu" id="trackList" hidden></ul>
+  </div>
+
+  <main class="app">
+    <!-- หน้า 1: ต้อนรับ -->
+    <section class="scene active" id="scene-welcome">
+      <svg class="heart-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.800-8 11-8 11z"/></svg>
+      <h1 class="title" data-text="welcomeTitle"></h1>
+      <p class="sub" data-text="welcomeSub"></p>
+      <button class="btn-main" id="startBtn" data-text="welcomeBtn"></button>
+      <div class="dots"><i class="on"></i><i></i><i></i></div>
+    </section>
+
+    <!-- หน้า 2: จดหมาย -->
+    <section class="scene" id="scene-letter">
+      <h2 class="title title-sm" data-text="letterHint"></h2>
+      <div class="envelope" id="envelope">
+        <div class="env-flap"></div>
+        <div class="env-pocket"></div>
+        <svg class="env-heart" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.800-8 11-8 11z"/></svg>
+      </div>
+      <div class="letter" id="letterPaper">
+        <div class="letter-to"><span data-text="letterTo"></span><span data-text="recipient"></span></div>
+        <div class="letter-body" data-text="letterBody"></div>
+        <div class="letter-from" data-text="sender"></div>
+      </div>
+      <button class="btn-main" id="toQuestionBtn" data-text="letterNext" hidden></button>
+      <div class="dots"><i></i><i class="on"></i><i></i></div>
+    </section>
+
+    <!-- หน้า 3: คำถาม -->
+    <section class="scene" id="scene-question">
+      <h1 class="title" data-text="questionTitle"></h1>
+      <p class="sub" data-text="questionSub"></p>
+      <div class="choices">
+        <button class="btn-main" id="yesBtn" data-text="yesText"></button>
+        <button class="btn-soft" id="noBtn" data-text="noText"></button>
+      </div>
+      <div class="tease" id="teaseMsg"></div>
+
+      <div class="celebrate" id="celebrationBox" hidden>
+        <div class="celebrate-title" data-text="yesTitle"></div>
+        <p class="sub" data-text="yesSub"></p>
+        <figure class="photo" id="photoCard">
+          <img id="couplePhoto" alt="">
+          <figcaption data-text="photoCaption"></figcaption>
+        </figure>
+        <div class="row-btns">
+          <button class="btn-soft" id="releaseLanternsBtn" data-text="lanternBtn"></button>
+          <button class="btn-soft" id="backHomeBtn" data-text="homeLabel"></button>
+        </div>
+      </div>
+      <div class="dots"><i></i><i></i><i class="on"></i></div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/music.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
